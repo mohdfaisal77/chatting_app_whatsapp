@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "522904012064",
+    "project_id": "faisal-chatting-app",
+    "storage_bucket": "faisal-chatting-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522904012064:android:6d9db2efb6be6047b1c345",
+        "android_client_info": {
+          "package_name": "com.infosphere.chatting_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyM0a_oMTKrQWqjiVHT18b_H7xdm_Gveg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
