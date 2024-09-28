@@ -1,11 +1,8 @@
-import 'package:chatting_app/models/user_model.dart';
 import 'package:chatting_app/pages/contact_page/contact_page.dart';
 import 'package:chatting_app/pages/home/home_screen.dart';
 import 'package:chatting_app/pages/profile/profile_screen.dart';
-import 'package:chatting_app/pages/profile/users_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({super.key});

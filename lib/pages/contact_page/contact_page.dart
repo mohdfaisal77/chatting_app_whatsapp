@@ -49,6 +49,8 @@ class ContactPage extends StatelessWidget {
             ),
             Column(
               children: contactController.userList.map((e) =>InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: (){
                 // Get.to("/chat_page");
                   Get.to(ChatPage(userModel:e));
@@ -56,7 +58,8 @@ class ContactPage extends StatelessWidget {
                   print(roomId);
                 },
                 child: ChatTile(imageUrl:e.profileImage ??   AssetsImages.defaultProfileUrl, name: e.name ?? "User", lastChat:e.bio ?? "Hey there",
-                  lastTime:e.email == profileController.auth.currentUser!.email! ? "You" : "",
+              //    lastTime:e.email == profileController.auth.currentUser!.email! ? "You" : "",
+                  lastTime:e.id == profileController.currentUser.value.id ? "You" : "",
 
                 ),
               ),

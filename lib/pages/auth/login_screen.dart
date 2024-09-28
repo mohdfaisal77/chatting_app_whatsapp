@@ -69,6 +69,8 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Text("Don't have an Account?"),
                       InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                           onTap: (){
                             Get.offAllNamed("/register_screen");
                           },

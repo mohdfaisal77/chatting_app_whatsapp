@@ -51,7 +51,7 @@ await initUser(name, age, address, bio, gender, maritalStatus);
 
 
       // Optionally navigate to home or any other screen
-      Get.offAllNamed("/home_screen");
+      Get.offAllNamed("/bottom_navbar");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print("Provided password is too weak");

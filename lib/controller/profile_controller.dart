@@ -66,7 +66,10 @@
 //
 //   }
 // }
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
@@ -77,6 +80,7 @@ class ProfileController extends GetxController {
   final auth = FirebaseAuth.instance;
   final storage = GetStorage();
   RxBool isLoading = false.obs;
+  final store=FirebaseStorage.instance;
 
   // Initialize currentUser with empty values
   Rx<UserModel> currentUser = UserModel().obs;
@@ -147,4 +151,23 @@ class ProfileController extends GetxController {
 
     print('User profile updated: ${currentUser.value.name}');
   }
+
+  Future<String> uploadFileToFirebase(String imagePath) async{
+    final path="files/${imagePath}";
+    final file= File(imagePath);
+    if(imagePath != ""){
+      try{
+        final ref = store.ref().child(path).putFile(file);
+        final uploadTask = await ref.whenComplete((){});
+        final downloadImageUrl = await uploadTask.ref.getDownloadURL();
+        print(downloadImageUrl);
+        return downloadImageUrl;
+      }catch(e){
+        print(e);
+        return " ";
+      }
+    }
+    return "";
+  }
+
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../config/images.dart';
@@ -21,21 +22,28 @@ class ChatTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
+              Expanded(
+             child: Row(
                 children: [
                    Image.network(AssetsImages.defaultProfileUrl,width: 70,),
-                  SizedBox(width: 15,),Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(name,style: Theme.of(context).textTheme.bodyLarge,),
-                      SizedBox(height: 5,),
-                      Text(lastChat,style: Theme.of(context).textTheme.labelMedium,),
-                    ],
+                  SizedBox(width: 15,),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(name,style: Theme.of(context).textTheme.bodyLarge,),
+                        SizedBox(height: 5,),
+                        Text(lastChat,
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.labelMedium,),
+                      ],
+                    ),
                   )
                 ],
-              ),
+              ),),
               Text(
-                lastTime,style: Theme.of(context).textTheme.labelMedium,
+                lastTime,
+                style: Theme.of(context).textTheme.labelMedium,
               )
             ],
           ),

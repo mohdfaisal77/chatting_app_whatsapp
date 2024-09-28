@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:chatting_app/controller/profile_controller.dart';
+import 'package:chatting_app/pages/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../config/images.dart';
 import '../../controller/image_picker_controller.dart';
@@ -50,9 +52,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text("My Profile"),
         actions: [
           IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: Icon(Icons.logout),
             onPressed: () {
-
+              Get.to(LoginScreen());
             },
           ),
         ],
@@ -70,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ? FileImage(File(imagePath.value)) as ImageProvider<Object>
                         : (profileController.currentUser.value.profileImage != null
                         ? FileImage(File(profileController.currentUser.value.profileImage!)) as ImageProvider<Object>
-                        : AssetImage(AssetsImages.boyPic) as ImageProvider<Object>),
+                        : NetworkImage(AssetsImages.dummy_profile) as ImageProvider<Object>),
                     fit: BoxFit.cover,
                   ),
 
@@ -79,8 +81,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   alignment: Alignment.bottomRight,
                   child: isEdit.value
                       ? InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onTap: () async {
-                      String? pickedPath = await imagePickerController.pickImage();
+                      String? pickedPath = await imagePickerController.pickImage(ImageSource.gallery);
                       if (pickedPath != null) {
                         imagePath.value = pickedPath; // Update the image path
                       }

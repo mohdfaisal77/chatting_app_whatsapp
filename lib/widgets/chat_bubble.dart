@@ -6,11 +6,8 @@ import '../config/images.dart';
 class ChatBubble extends StatelessWidget {
   final String message;
   final bool isComming;
-
   final String time;
-
   final String status;
-
   final String imageUrl;
 
   const ChatBubble(
@@ -51,17 +48,19 @@ class ChatBubble extends StatelessWidget {
                         bottomRight: Radius.circular(0),
                       ),
               ),
-              child: imageUrl == ""
+              child: imageUrl == null || imageUrl.isEmpty
                   ? Text(message)
                   : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                          ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(imageUrl)),
-                          SizedBox(height: 10),
-                          Text(message),
-                        ]),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(imageUrl, fit: BoxFit.cover)),
+                  SizedBox(height: message.isNotEmpty ? 10 : 0),
+                  if (message.isNotEmpty) Text(message),
+                ],
+              ),
+
             ),
             SizedBox(
               height: 10,
